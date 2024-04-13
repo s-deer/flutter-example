@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:example/pages/page.dart';
+import 'package:example/presentation/pages/page.dart';
 
 part 'app_router.gr.dart';
 
