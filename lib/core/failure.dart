@@ -9,7 +9,9 @@ abstract class Failure extends Equatable {
   List<Object?> get props => [message];
 }
 
-class NetworkFailure extends Failure {}
+class NetworkFailure extends Failure {
+  const NetworkFailure(super.message);
+}
 
 class InternalAppFailure extends Failure {
   final StackTrace? stackTrace;
