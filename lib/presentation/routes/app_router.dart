@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:example/presentation/pages/page.dart';
+import 'package:example/domain/domain.dart';
+
+import '../pages/pages.dart';
 
 part 'app_router.gr.dart';
 
@@ -15,6 +18,9 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: UsersRoute.page,
           initial: true,
-        )
+        ),
+        AutoRoute(
+          page: UserRoute.page,
+        ),
       ];
 }

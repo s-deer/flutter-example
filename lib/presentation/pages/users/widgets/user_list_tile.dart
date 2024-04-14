@@ -15,6 +15,7 @@ class UserListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       leading: const Icon(Icons.person),
       title: Text(user.fullName),
       subtitle: Text(user.email),
