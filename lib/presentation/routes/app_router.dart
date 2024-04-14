@@ -8,7 +8,7 @@ import '../pages/pages.dart';
 
 part 'app_router.gr.dart';
 
-@injectable
+@singleton
 @AutoRouterConfig()
 class AppRouter extends _$AppRouter {
   AppRouter();
