@@ -1,8 +1,10 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:example/core/core.dart';
 import 'package:example/domain/domain.dart';
 
+@injectable
 class GetUsersUsecase extends NoParamsAsyncUseCase<List<User>> {
   final UsersRepository _usersRepository;
 
