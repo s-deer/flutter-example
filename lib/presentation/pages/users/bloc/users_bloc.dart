@@ -16,6 +16,7 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
 
   UsersBloc(this._getUsersUsecase) : super(const UsersState()) {
     on<FetchUsersEvent>(_onFetchUsersEvent);
+    on<SearchUsersEvent>(_onSearchUsersEvent);
   }
 
   FutureOr<void> _onFetchUsersEvent(
@@ -39,10 +40,25 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
           failure: null,
           loading: false,
           users: users,
+          filteredUsers: users,
         );
       },
     );
 
     emit(newState);
+  }
+
+  FutureOr<void> _onSearchUsersEvent(SearchUsersEvent event, Emitter<UsersState> emit) {
+    final query = event.query.toLowerCase();
+
+    final filteredUsers = state.users.where((User user) {
+      return user.fullName.toLowerCase().contains(query);
+    }).toList();
+
+    emit(
+      state.copyWith(
+        filteredUsers: filteredUsers,
+      ),
+    );
   }
 }

@@ -25,9 +25,9 @@ class UsersContent extends StatelessWidget {
       );
     }
 
-    final users = context.select((UsersBloc bloc) => bloc.state.users);
+    final isEmpty = context.select((UsersBloc bloc) => bloc.state.users.isEmpty);
 
-    if (users.isEmpty) {
+    if (isEmpty) {
       return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -45,6 +45,23 @@ class UsersContent extends StatelessWidget {
       );
     }
 
-    return UsersList(users: users);
+    final users = context.select((UsersBloc bloc) => bloc.state.filteredUsers);
+
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: TextField(
+            onChanged: (String value) {
+              context.read<UsersBloc>().add(SearchUsersEvent(value));
+            },
+            decoration: const InputDecoration(hintText: 'Search'),
+          ),
+        ),
+        Expanded(
+          child: UsersList(users: users),
+        ),
+      ],
+    );
   }
 }
